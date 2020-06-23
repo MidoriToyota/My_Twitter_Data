@@ -350,7 +350,7 @@ def stopwords_user(words):
     
 def graph_wordcloud(words):
     from wordcloud import WordCloud
-    wordcloud = WordCloud(background_color="white", width = 1600, height = 800, scale=1).generate(' '.join(words))
+    wordcloud = WordCloud(background_color="white", width = 1000, height = 500, scale=1).generate(' '.join(words))
     plt.figure(figsize=(10,5))
     plt.imshow(wordcloud)
     plt.axis("off")
@@ -359,7 +359,5 @@ def graph_wordcloud(words):
 
 ## Execução ## --------------------------------------------------------------------------------------
  
-
-
 
 menu()
