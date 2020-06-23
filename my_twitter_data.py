@@ -16,6 +16,7 @@ from nltk import tokenize
 from nltk import FreqDist
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+import numpy as np
 
 
 ## Menu Sidebar ## --------------------------------------------------------------------------------------
@@ -42,18 +43,18 @@ def about():
 
     st.title('My Twitter Data')
 
-    '''Faça a análise dos dados do seu Twitter de um jeito fácil sem precisar instalar nada!'''
+    '''Faça a análise dos dados do seu Twitter de um jeito fácil e sem precisar instalar nada!'''
 
     '''O `My Twitter Data` é um aplicativo criado para que qualquer pessoa com uma conta no twitter
     consiga analisar seus próprios dados de perfil sem a necessidade de baixar e instalar programas em seu computador.
     É tudo online e para começar basta completar alguns passos.
     '''
 
-    '''Confira noso vídeo explicativo:'''
+    '''Confira noso vídeo demonstrativo:'''
 
     st.video('https://youtu.be/1HhTusjL42k')
 
-    '''Para uma explicação mais detalhada, confira o nosso Passo a passo no Menu Inicial.'''
+    '''Para uma explicação mais detalhada, clique em  `passo a passo` no **Menu Inicial** à esquerda.'''
 
 
 # Página de Informações
@@ -64,28 +65,29 @@ def info_page():
     st.header('**1. Obter dados do Twitter**')
 
     '''
-    Para fazer a solicitação, basta fazer o seguinte:
-    - Entre no site do [Twitter](https://twitter.com/home) e no Menu à esquerda acesse a opção `Mais`
+    Para solicitar seus dados do Twitter, basta fazer o seguinte:
+    - Entre no site do [Twitter](https://twitter.com/home) e no menu à esquerda acesse a opção `Mais`
     - Clique na opção `Conta`, vá em **Dados e permissões** e clique em `Seus dados do Twitter`
     - Vá em **Baixar seus dados do Twitter**, insira sua senha e clique em `Confirmar`
     - Na opção **Twitter**, clique em `Solicitar arquivo`
 
-    Se fizer tudo correto, você irá chegar na seguinte janela:
+    Ficou confuso? Confira o vídeo explicativo:
     '''
 
-    st.image('solicitar_arquivo.jpg')
+    st.video('https://youtu.be/1HhTusjL42k')
 
     '''
-    Pronto! O Twitter irá preparar os seus dados e te enviará por e-mail assim que eles estiverem prontos!
-    Depois disso você pode seguir para o próximo passo: Converter o arquivo tweets.js para um formato legível.
+    O Twitter irá preparar os seus dados e os enviará por e-mail assim que eles estiverem prontos!
+    Depois disso você pode seguir para o passo número 2.
     '''
 
     st.header('**2. Converter dados json para csv**')
 
     '''
-    Inicialmente, quando solicitávamos os dados do Twitter, ele  fornecia um arquvivo csv com as informações de todos os tweetes pessoais.
-    Há algum tempo, entretanto, a rede social deixo de fornecer os dados no formato csv e passou a fornecer no formato json (.js).
-    Esse tipo de formato não serve para se realizar análises e, portanto, precisamos convertê-lo para csv.
+    Inicialmente, quando solicitávamos nossos os dados ao Twitter, ele  fornecia um arquvivo csv com as informações de todos os tweetes pessoais.
+    Arquivos nesse formato são de fácil leitura e interpretação, sendo os mais utilizados em análise de dados. 
+    Há algum tempo, entretanto, a rede social deixo de fornecer os dados nesse formato e passou a fornecer no formato json (.js).
+    Esse tipo de arquivo é muito poluído, não sendo possível analisar utilizando métodos convencionais. Sendo assim, precisamos convertê-lo para csv!
     '''
 
     '''
@@ -101,9 +103,18 @@ def info_page():
     '''
 
     '''
-    Agora só falta fazer o upload dos seus dados no `My Twitter Data` para gerar uma análise personalizada dos seus tweets!
+    Se tudo deu certo até aqui, podemos seguir para o último passo: ANALISAR
     '''
 
+    st.header('**3. Analisar os dados**')
+
+    '''
+    Se você já está com seu arquivo csv em mãos, chegou a hora de se divertir!
+    No **Menu Inicial** à esquerda clique em `Iniciar análise` e faça o upload do seus arquivo csv.
+
+    Confira com a gente tudo o que é possível fazer com o My Twitter Data:
+    '''
+    st.video('https://youtu.be/1HhTusjL42k')
 
 # Página de análise
 def analysis_page():
@@ -145,6 +156,13 @@ def analysis_1(df):
     max_favorite = max(df.favorite_count)
     st.table(df['full_text'][df['favorite_count'] == max_favorite])
 
+    st.header('**Quantidade de curtidas recebidas**')
+    graph_favorite(df)
+
+    st.header('**Quantidade retweets recebidos**')
+    graph_retweet(df)
+
+
 
 
 # Análise temporal (Análise 2)
@@ -161,7 +179,7 @@ def analysis_2(df):
     st.header('**Total de tweets por mês**')
     graph_month(df)
 
-    st.header('**Total tweets por dia da semana**')
+    st.header('**Total de tweets por dia da semana**')
     graph_weekday(df)
 
     st.header('**Total de tweets por ano**')
@@ -197,6 +215,8 @@ def preprocess(df):
     get_hour = lambda date: date.hour
     get_year = lambda date: date.year
     get_date = lambda d: d.date
+    get_favorite = lambda f: 'Com like' if f > 0 else 'Sem like'
+    get_retweet = lambda r: 'Com retweet' if r > 0 else 'Sem retweet'
 
     df['created_at'] = df.created_at.apply(get_datetime)
     df['weekday'] = df.created_at.apply(get_weekday)
@@ -204,6 +224,8 @@ def preprocess(df):
     df['hour'] = df.created_at.apply(get_hour)
     df['year'] = df.created_at.apply(get_year)
     df['date'] = df.created_at.apply(get_date)
+    df['favorite'] = df.favorite_count.apply(get_favorite)
+    df['retweet'] = df.retweet_count.apply(get_retweet)
 
     return df
 
@@ -238,7 +260,6 @@ def graph_month(df):
     ax.set_xticks(n_month)
     ax.set_xticklabels(df_month.keys(), rotation = 40)
     plt.bar(n_month, df_month.values())
-    plt.title('Nº de tweets por mês')
     plt.xlabel('Mês')
     plt.ylabel('Quantidade de tweets')
     st.pyplot()
@@ -285,7 +306,7 @@ def slider_period(df):
     min_date = min(df.date)
     max_date = max(df.date)
 
-    range_date = st.date_input("Insira o período inicial e final das análises no formato (YYYY/MM/DD - YYYY/MM/DD)", [min_date, max_date])
+    range_date = st.date_input("Insira o período de início e fim que deseja analisar no formato (YYYY/MM/DD - YYYY/MM/DD)", [min_date, max_date])
 
     try:
         df_subset = df[(df['date']>= range_date[0]) & (df['date']<= range_date[1])]
@@ -355,6 +376,58 @@ def graph_wordcloud(words):
     plt.imshow(wordcloud)
     plt.axis("off")
     plt.tight_layout(pad=0)
+    st.pyplot()
+
+def graph_favorite(df):
+    df_favorite = Counter(df.favorite)
+    fig, ax = plt.subplots(figsize=(10, 5), subplot_kw=dict(aspect="equal"))
+
+    labels = list(df_favorite.keys()) 
+    values = list(df_favorite.values())
+
+    wedges, texts = ax.pie(values, wedgeprops=dict(width=0.5), startangle=-40)
+
+    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
+    kw = dict(arrowprops=dict(arrowstyle="-"),
+            bbox=bbox_props, zorder=0, va="center")
+
+    for i, p in enumerate(wedges):
+        ang = (p.theta2 - p.theta1)/2. + p.theta1
+        y = np.sin(np.deg2rad(ang))
+        x = np.cos(np.deg2rad(ang))
+        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
+        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
+        kw["arrowprops"].update({"connectionstyle": connectionstyle})
+        ax.annotate("{} ({})".format(labels[i], values[i]), xy=(x, y), xytext=(0.9*np.sign(x), 0.9*y),
+                    horizontalalignment=horizontalalignment, **kw)
+
+    st.pyplot()
+
+def graph_retweet(df):
+
+    df_retweet = Counter(df.retweet)
+
+    fig, ax = plt.subplots(figsize=(10, 5), subplot_kw=dict(aspect="equal"))
+
+    labels = list(df_retweet.keys()) 
+    values = list(df_retweet.values())
+
+    wedges, texts = ax.pie(values, wedgeprops=dict(width=0.5), startangle=-40)
+
+    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
+    kw = dict(arrowprops=dict(arrowstyle="-"),
+            bbox=bbox_props, zorder=0, va="center")
+
+    for i, p in enumerate(wedges):
+        ang = (p.theta2 - p.theta1)/2. + p.theta1
+        y = np.sin(np.deg2rad(ang))
+        x = np.cos(np.deg2rad(ang))
+        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
+        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
+        kw["arrowprops"].update({"connectionstyle": connectionstyle})
+        ax.annotate("{} ({})".format(labels[i], values[i]), xy=(x, y), xytext=(0.9*np.sign(x), 0.9*y),
+                    horizontalalignment=horizontalalignment, **kw)
+
     st.pyplot()
 
 ## Execução ## --------------------------------------------------------------------------------------
