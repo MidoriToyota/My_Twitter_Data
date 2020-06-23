@@ -439,7 +439,8 @@ def graph_retweet(df):
 
     st.pyplot()
 
-
+def remover_acentos(txt, codif='utf-8'):
+    return normalize('NFKD', txt).encode('ASCII', 'ignore')
 
 
 
