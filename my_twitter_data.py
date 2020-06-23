@@ -16,7 +16,7 @@ from nltk import tokenize
 from nltk import FreqDist
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from wordcloud import WordCloud
+
 
 ## Menu Sidebar ## --------------------------------------------------------------------------------------
 
@@ -176,7 +176,7 @@ def analysis_3(df):
     words = stopwords_general(df)
     words = stopwords_user(words)
 
-    st.header("Nuvem de palavras")
+    st.header('**Nuvem de palavras**')
     try: 
         graph_wordcloud(words)
     except:
@@ -337,7 +337,7 @@ def graph_freq(words):
 
 
 def stopwords_user(words):
-    words_list_user = st.text_input('Insira todas as palavras que deseja remover (separadas por vírgula e sem espaço entre as vírgulas)', 'ainda,vou')
+    words_list_user = st.text_input('Insira todas as palavras que deseja remover da Word Cloud (separadas por vírgula e sem espaço entre as vírgulas)', 'ainda,vou')
     STOPWORDS_user = words_list_user.split(",")
     words_new = [w for w in words if w not in STOPWORDS_user]
 
@@ -349,10 +349,12 @@ def stopwords_user(words):
     return words_new
     
 def graph_wordcloud(words):
-    wordcloud = WordCloud(background_color="white", width = 800, height = 500, scale=2).generate(' '.join(words))
+    from wordcloud import WordCloud
+    wordcloud = WordCloud(background_color="white", width = 1600, height = 800, scale=1).generate(' '.join(words))
     plt.figure(figsize=(10,5))
     plt.imshow(wordcloud)
     plt.axis("off")
+    plt.tight_layout(pad=0)
     st.pyplot()
 
 ## Execução ## --------------------------------------------------------------------------------------
