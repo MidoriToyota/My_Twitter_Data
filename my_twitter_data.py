@@ -17,6 +17,7 @@ from nltk import FreqDist
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import numpy as np
+from unicodedata import normalize
 
 
 ## Menu Sidebar ## --------------------------------------------------------------------------------------
@@ -334,9 +335,11 @@ def stopwords_general(df):
 
     raw_string = ''.join(raw_tweets)
     no_links = re.sub(r'http\S+', '', raw_string)
-    no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_links)
-    no_special_characters = re.sub('[^A-Za-z ]+', '', no_unicode)
-
+    no_acentos = str(remover_acentos(no_links))[2:-1]
+    no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_acentos) 
+    no_mark= re.sub(r'(\s)@\w+', r'\1', no_unicode)
+    no_special_characters = re.sub('[^A-Za-z ]+', '', no_mark)
+    
     with open('stopwords-pt.txt', 'r', encoding="utf-8") as file:
         words_list = file.read().replace('\n', ',')
     STOPWORDS = words_list.split(",")
@@ -435,6 +438,10 @@ def graph_retweet(df):
                     horizontalalignment=horizontalalignment, **kw)
 
     st.pyplot()
+
+
+
+
 
 ## Execução ## --------------------------------------------------------------------------------------
  
