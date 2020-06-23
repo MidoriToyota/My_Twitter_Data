@@ -43,10 +43,10 @@ def about():
 
     st.title('My Twitter Data')
 
-    '''Faça a análise dos dados do seu Twitter de um jeito fácil e sem precisar instalar nada!'''
+    '''Faça a análise dos app do seu Twitter de um jeito fácil e sem precisar instalar nada!'''
 
     '''O `My Twitter Data` é um aplicativo criado para que qualquer pessoa com uma conta no twitter
-    consiga analisar seus próprios dados de perfil sem a necessidade de baixar e instalar programas em seu computador.
+    consiga analisar seus próprios app de perfil sem a necessidade de baixar e instalar programas em seu computador.
     É tudo online e para começar basta completar alguns passos.
     '''
 
@@ -62,13 +62,13 @@ def info_page():
 
     st.title('Passo a passo')
 
-    st.header('**1. Obter dados do Twitter**')
+    st.header('**1. Obter app do Twitter**')
 
     '''
-    Para solicitar seus dados do Twitter, basta fazer o seguinte:
+    Para solicitar seus app do Twitter, basta fazer o seguinte:
     - Entre no site do [Twitter](https://twitter.com/home) e no menu à esquerda acesse a opção `Mais`
-    - Clique na opção `Conta`, vá em **Dados e permissões** e clique em `Seus dados do Twitter`
-    - Vá em **Baixar seus dados do Twitter**, insira sua senha e clique em `Confirmar`
+    - Clique na opção `Conta`, vá em **App e permissões** e clique em `Seus app do Twitter`
+    - Vá em **Baixar seus app do Twitter**, insira sua senha e clique em `Confirmar`
     - Na opção **Twitter**, clique em `Solicitar arquivo`
 
     Ficou confuso? Confira o vídeo explicativo:
@@ -77,28 +77,28 @@ def info_page():
     st.video('https://youtu.be/1HhTusjL42k')
 
     '''
-    O Twitter irá preparar os seus dados e os enviará por e-mail assim que eles estiverem prontos!
+    O Twitter irá preparar os seus app e os enviará por e-mail assim que eles estiverem prontos!
     Depois disso você pode seguir para o passo número 2.
     '''
 
-    st.header('**2. Converter dados json para csv**')
+    st.header('**2. Converter app json para csv**')
 
     '''
-    Inicialmente, quando solicitávamos nossos os dados ao Twitter, ele  fornecia um arquvivo csv com as informações de todos os tweetes pessoais.
-    Arquivos nesse formato são de fácil leitura e interpretação, sendo os mais utilizados em análise de dados. 
-    Há algum tempo, entretanto, a rede social deixo de fornecer os dados nesse formato e passou a fornecer no formato json (.js).
+    Inicialmente, quando solicitávamos nossos os app ao Twitter, ele  fornecia um arquvivo csv com as informações de todos os tweetes pessoais.
+    Arquivos nesse formato são de fácil leitura e interpretação, sendo os mais utilizados em análise de app. 
+    Há algum tempo, entretanto, a rede social deixo de fornecer os app nesse formato e passou a fornecer no formato json (.js).
     Esse tipo de arquivo é muito poluído, não sendo possível analisar utilizando métodos convencionais. Sendo assim, precisamos convertê-lo para csv!
     '''
 
     '''
     Para a nossa felicidade o site http://tweetjstocsv.glitch.me/ já faz todo esse trabalho pesado. Para fazer a conversão do arquivo, basta seguir os seguintes passos:
-    - Faça o download dos dados enviados por e-mail pelo Twitter.
+    - Faça o download dos app enviados por e-mail pelo Twitter.
     - Descompacte o arquivo.
-    - Acesse o [site](http://tweetjstocsv.glitch.me/) para realizar a conversão dos dados.
+    - Acesse o [site](http://tweetjstocsv.glitch.me/) para realizar a conversão dos app.
     - Dentro do site, clique em `Choose your tweets.js`
     - Para encontrar o arquivo, entre na pasta **data** e procure por `tweets.js`.
     - Selecione o arquivo e clique em `Abrir`
-    - Espere alguns segundos para que seus dados sejam convertidos
+    - Espere alguns segundos para que seus app sejam convertidos
     - Clique no botão `Save .csv` e faça o download dos seus arquivos
     '''
 
@@ -106,7 +106,7 @@ def info_page():
     Se tudo deu certo até aqui, podemos seguir para o último passo: ANALISAR
     '''
 
-    st.header('**3. Analisar os dados**')
+    st.header('**3. Analisar os app**')
 
     '''
     Se você já está com seu arquivo csv em mãos, chegou a hora de se divertir!
@@ -121,7 +121,7 @@ def info_page():
 
 # Página de análise
 def analysis_page():
-    st.sidebar.header('**Upload dos dados**')
+    st.sidebar.header('**Upload dos app**')
 
     uploaded_file = st.sidebar.file_uploader("", type="csv")
 
@@ -334,14 +334,14 @@ def stopwords_general(df):
 
     raw_string = ''.join(raw_tweets)
     no_links = re.sub(r'http\S+', '', raw_string)
-    #no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_links)
-    #no_special_characters = re.sub('[^A-Za-z ]+', '', no_links)
+    no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_links)
+    no_special_characters = re.sub('[^A-Za-z ]+', '', no_unicode)
 
     with open('stopwords-pt.txt', 'r', encoding="utf-8") as file:
         words_list = file.read().replace('\n', ',')
     STOPWORDS = words_list.split(",")
 
-    words = no_links.split(" ")
+    words = no_special_characters.split(" ")
     words = [w for w in words if len(w) > 2]  # Ignorar artigos a, o, as, os, um...
     words = [w.lower() for w in words]
     words = [w for w in words if w not in STOPWORDS]
