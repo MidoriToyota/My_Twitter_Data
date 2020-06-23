@@ -331,14 +331,14 @@ def stopwords_general(df):
 
     raw_string = ''.join(raw_tweets)
     no_links = re.sub(r'http\S+', '', raw_string)
-    no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_links)
-    no_special_characters = re.sub('[^A-Za-z ]+', '', no_links)
+    #no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_links)
+    #no_special_characters = re.sub('[^A-Za-z ]+', '', no_links)
 
     with open('stopwords-pt.txt', 'r', encoding="utf-8") as file:
         words_list = file.read().replace('\n', ',')
     STOPWORDS = words_list.split(",")
 
-    words = no_special_characters.split(" ")
+    words = no_links.split(" ")
     words = [w for w in words if len(w) > 2]  # Ignorar artigos a, o, as, os, um...
     words = [w.lower() for w in words]
     words = [w for w in words if w not in STOPWORDS]
