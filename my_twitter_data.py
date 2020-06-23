@@ -155,6 +155,10 @@ def analysis_1(df):
     st.write('Dia do primeiro tweet enviado: ', min(df.date))
     st.write('Dia do último tweet enviado: ', max(df.date))
 
+    st.header('**Tweets com mais retweets**')
+    max_retweet = max(df.retweet_count)
+    st.table(df['full_text'][df['retweet_count'] == max_retweet])
+
     st.header('**Tweets mais curtidos**')
     max_favorite = max(df.favorite_count)
     st.table(df['full_text'][df['favorite_count'] == max_favorite])
@@ -164,7 +168,6 @@ def analysis_1(df):
 
     st.header('**Quantidade retweets recebidos**')
     graph_retweet(df)
-
 
 
 
