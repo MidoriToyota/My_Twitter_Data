@@ -16,9 +16,7 @@ from nltk import tokenize
 from nltk import FreqDist
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-# from wordcloud import WordCloud
-
-
+from wordcloud import WordCloud
 
 ## Menu Sidebar ## --------------------------------------------------------------------------------------
 
@@ -44,16 +42,18 @@ def about():
 
     st.title('My Twitter Data')
 
-    '''Faça a análise dos dados do seu Twitter de um jeito fácil sem instalar nada!'''
+    '''Faça a análise dos dados do seu Twitter de um jeito fácil sem precisar instalar nada!'''
 
     '''O `My Twitter Data` é um aplicativo criado para que qualquer pessoa com uma conta no twitter
-    consiga analisar seus próprios dados de perfil sem a necessidade de instalar programas em seu computador.
+    consiga analisar seus próprios dados de perfil sem a necessidade de baixar e instalar programas em seu computador.
     É tudo online e para começar basta completar alguns passos.
     '''
 
     '''Confira noso vídeo explicativo:'''
 
     st.video('https://youtu.be/1HhTusjL42k')
+
+    '''Para uma explicação mais detalhada, confira o nosso Passo a passo no Menu Inicial.'''
 
 
 # Página de Informações
@@ -118,12 +118,12 @@ def analysis_page():
         st.sidebar.header('**Tipo de análise**')
         analysis = st.sidebar.radio("", ('Visão geral',
                                          'Análise temporal',
-                                         'Nuvem de palavras'))
+                                         'Word Cloud'))
         if analysis == 'Visão geral':
             analysis_1(df)
         if analysis == 'Análise temporal':
             analysis_2(df)
-        if analysis == 'Nuvem de palavras':
+        if analysis == 'Word Cloud':
             analysis_3(df)
 
 
@@ -140,7 +140,6 @@ def analysis_1(df):
     st.write('Nº total de likes recebidos: ', sum(df.favorite_count))
     st.write('Dia do primeiro tweet enviado: ', min(df.date))
     st.write('Dia do último tweet enviado: ', max(df.date))
-    
 
     st.header('**Tweets mais curtidos**')
     max_favorite = max(df.favorite_count)
@@ -172,8 +171,19 @@ def analysis_2(df):
 
 # Análise 3
 def analysis_3(df):
+
+    st.header('**Remoção de palavras**')
+    words = stopwords_general(df)
+    words = stopwords_user(words)
+
+    st.header("Nuvem de palavras")
+    try: 
+        graph_wordcloud(words)
+    except:
+        st.info('Não foi possível carregar a Word Cloud')
+
     st.header('**Palavras mais frequentes**')
-    graph_freq(df)
+    graph_freq(words)
 
 
 ## Funções complementares ## --------------------------------------------------------------------------------------
@@ -275,7 +285,7 @@ def slider_period(df):
     min_date = min(df.date)
     max_date = max(df.date)
 
-    range_date = st.date_input("Insira o período inicial e final das análises", [min_date, max_date])
+    range_date = st.date_input("Insira o período inicial e final das análises no formato (YYYY/MM/DD - YYYY/MM/DD)", [min_date, max_date])
 
     try:
         df_subset = df[(df['date']>= range_date[0]) & (df['date']<= range_date[1])]
@@ -289,7 +299,7 @@ def slider_period(df):
         st.error('Inisira um período válido no formato YYYY/MM/DD – YYYY/MM/DD')
         return df
 
-def graph_freq(df):
+def stopwords_general(df):
 
     raw_tweets = []
     for tweets in df['full_text']:
@@ -299,34 +309,55 @@ def graph_freq(df):
     no_links = re.sub(r'http\S+', '', raw_string)
     no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_links)
     no_special_characters = re.sub('[^A-Za-z ]+', '', no_unicode)
+
     with open('stopwords-pt.txt', 'r', encoding="utf-8") as file:
-        stop_word = file.read().replace('\n', ',')
-    STOPWORDS = stop_word.split(",")
+        words_list = file.read().replace('\n', ',')
+    STOPWORDS = words_list.split(",")
 
     words = no_special_characters.split(" ")
     words = [w for w in words if len(w) > 2]  # Ignorar artigos a, o, as, os, um...
     words = [w.lower() for w in words]
     words = [w for w in words if w not in STOPWORDS]
 
-    words_extra = ['pra', 'voc', 'acho', 'ficar', 'vou', 'deram', 'mim', 'vocs', 'vamos', 'algum','est', 'fazendo', 'tava', 'fica', 'ento', 'pro']
-
-    with open("stopwords-extra.txt", "w") as output:
-        for item in words_extra:
-            output.write(str(item) + "\n")
-
     with open('stopwords-extra.txt', 'r', encoding="utf-8") as file:
-        stop_word = file.read().replace('\n', ',')
+        words_list_extra = file.read().replace('\n', ',')
 
-        STOPWORDS_extra = stop_word.split(",")
+        STOPWORDS_extra = words_list_extra.split(",")
 
     words = [w for w in words if w not in STOPWORDS_extra]
 
+    return words
+
+
+def graph_freq(words):
     df_palavras = FreqDist(words)
     fig = plt.figure(figsize=(10,5))
     df_palavras.plot(20, cumulative=False)
     st.pyplot()
 
 
+def stopwords_user(words):
+    words_list_user = st.text_input('Insira todas as palavras que deseja remover (separadas por vírgula e sem espaço entre as vírgulas)', 'ainda,vou')
+    STOPWORDS_user = words_list_user.split(",")
+    words_new = [w for w in words if w not in STOPWORDS_user]
+
+    options = st.multiselect(
+        'Palavras removidas',
+        STOPWORDS_user,
+        STOPWORDS_user)
+
+    return words_new
+    
+def graph_wordcloud(words):
+    wordcloud = WordCloud(background_color="white", width = 800, height = 500, scale=2).generate(' '.join(words))
+    plt.figure(figsize=(10,5))
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    st.pyplot()
+
 ## Execução ## --------------------------------------------------------------------------------------
  
+
+
+
 menu()
