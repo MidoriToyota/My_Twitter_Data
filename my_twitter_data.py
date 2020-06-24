@@ -56,7 +56,7 @@ def about():
     Confira nosso vídeo demonstrativo:
     '''
 
-    st.video('https://youtu.be/1HhTusjL42k')
+    st.image('foto_do_video.jpg', width = 680)
 
     '''Para uma explicação mais detalhada, clique em  `passo a passo` no **Menu Inicial** à esquerda.'''
 
@@ -132,21 +132,8 @@ def info_page():
     Se tudo deu certo até aqui, podemos seguir para o último passo: ANALISAR!
     '''
 
-    # Analisar os daods
-    st.header('**3. Analise os dados com o My Twitter Data**')
-    '''
-    Se você já está com seu arquivo csv em mãos, chegou a hora de se divertir!
-
-    No **Menu Inicial** à esquerda clique em `Iniciar análise` e faça o upload do seu arquivo csv. 
-    Depois basta escolher o tipo de análise que deseja realizar e modificar os parâmetros de visualização 
-    acordo com a sua necessidade.
-
-    Confira tudo o que é possível fazer com o My Twitter Data:
-    '''
-    st.video('https://youtu.be/1HhTusjL42k')
-
     # Não tenho dados
-    st.header('**Não tenho dados pessoais do Twitter para usar**')
+    st.header('**3. Não tenho dados pessoais do Twitter para usar**')
     '''
     Se você não usa o twitter ou não tem muitos dados para analisar, não tem problema! Você pode usar nossos dataset de exemplo clicando em Download:
     
@@ -165,6 +152,17 @@ def info_page():
     As outras informações de datas, horários, ids, quantidades de retweets, etc. são fictícios e gerados para que
     os dados fiquem exatamente como ficariam no caso de se seguir o passo a passo descrito acima com dados de qualquer outro usuário.
     '''
+
+    # Analisar os daods
+    st.header('**4. Analise os dados com o My Twitter Data**')
+    '''
+    Se você já está com seu arquivo csv em mãos, chegou a hora de se divertir!
+
+    No **Menu Inicial** à esquerda clique em `Iniciar análise` e faça o upload do seu arquivo csv. 
+    Depois basta escolher o tipo de análise que deseja realizar e modificar os parâmetros de visualização 
+    acordo com a sua necessidade.
+    '''
+
 
 
 # Página de análise
