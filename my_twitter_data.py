@@ -162,8 +162,10 @@ def info_page():
     muito conteúdo desnecessário, fiz a substituição das palavras para que no final fosse gerada uma Word Cloud agradável. 
     Por esse motivo, o conteúdo dos tweets não fará sentido algum e tão pouco reflete à minha opinião sobre os assuntos 
     abordados no momento da coleta aleatória.
-    '''
 
+    As outras informações de datas, horários, ids, quantidades de retweets, etc. são fictícios e gerados para que
+    os dados fiquem exatamente como ficariam no caso de se seguir o passo a passo descrito acima com dados de qualquer outro usuário.
+    '''
 
 
 # Página de análise
