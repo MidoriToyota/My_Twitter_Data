@@ -151,8 +151,7 @@ def info_page():
     Se você não usa o twitter ou não tem muitos dados para analisar, não tem problema! Você pode usar nossos dataset de exemplo clicando em Download:
     '''
 
-    if st.button('Download'):
-        webbrowser.open('https://drive.google.com/file/d/18LsOGWCJiJUVOevZdqWHJFm6GUrKL84d/view?usp=sharing', new=2)
+    [Baixar arquivo]('https://drive.google.com/file/d/18LsOGWCJiJUVOevZdqWHJFm6GUrKL84d/view?usp=sharing')
 
     '''
     **Observação!**
