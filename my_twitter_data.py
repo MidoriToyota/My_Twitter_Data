@@ -149,9 +149,9 @@ def info_page():
     st.header('**Não tenho dados pessoais do Twitter para usar**')
     '''
     Se você não usa o twitter ou não tem muitos dados para analisar, não tem problema! Você pode usar nossos dataset de exemplo clicando em Download:
+    
+    [Baixar arquivo](https://drive.google.com/file/d/18LsOGWCJiJUVOevZdqWHJFm6GUrKL84d/view?usp=sharing)
     '''
-
-    [Baixar arquivo]('https://drive.google.com/file/d/18LsOGWCJiJUVOevZdqWHJFm6GUrKL84d/view?usp=sharing')
 
     '''
     **Observação!**
