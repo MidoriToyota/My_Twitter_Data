@@ -73,7 +73,7 @@ def about():
     O `My Twitter Data` está aberto para sugestões de melhoria e críticas construtivas. 
     Segue o link do meu portifólio que contém o código fonte do projeto:
 
-    https://bigdatatoyota.netlify.app/
+    https://midoritoyota.netlify.app/
 
     Aproveite para checar os outros projetos!
     '''
@@ -82,16 +82,16 @@ def about():
     st.title('Sobre a autora')
 
     '''
-    Meu nome é `bigdata`, sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios). 
+    Me chamo `Midori`, sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios). 
     Atualmente, estou em processo de transição de carreira para Ciência de Dados e realizo diversos projetos
     para botar em prática o que aprendo nos cursos que venho concluindo. Desenvolvi o `My Twitter Data` em python mas 
     minha linguagem principal é o R. Se quiser, você pode ver meus outros projetos acessando o meu portfolio pelo link:
 
-    https://bigdatatoyota.netlify.app/
+    https://midoritoyota.netlify.app/
 
     Estou aberta a novas oportunidades. Se deseja me conhecer, me adicione no linkedin e vamos bater um papo!
 
-    https://www.linkedin.com/in/bigdatatoyota/
+    https://www.linkedin.com/in/midoritoyota/
     '''
 
 
