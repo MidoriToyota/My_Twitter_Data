@@ -61,7 +61,7 @@ def about():
     '''Para uma explicação mais detalhada, clique em  `passo a passo` no **Menu Inicial** à esquerda.'''
 
     # Sobre o projeto
-    st.title('Sobre o projeto')
+    st.title('Como surgiu')
 
     '''
     O `My Twitter Data` surgiu como um exercício para aplicar a linguagem python em análise de dados
@@ -73,7 +73,7 @@ def about():
     O `My Twitter Data` está aberto para sugestões de melhoria e críticas construtivas. 
     Segue o link do meu portifólio que contém o código fonte do projeto:
 
-    https://midoritoyota.netlify.app/
+    https://bigdatatoyota.netlify.app/
 
     Aproveite para checar os outros projetos!
     '''
@@ -82,16 +82,16 @@ def about():
     st.title('Sobre a autora')
 
     '''
-    O meu nome é `Midori` sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios). 
+    Meu nome é `bigdata`, sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios). 
     Atualmente, estou em processo de transição de carreira para Ciência de Dados e realizo diversos projetos
     para botar em prática o que aprendo nos cursos que venho concluindo. Desenvolvi o `My Twitter Data` em python mas 
     minha linguagem principal é o R. Se quiser, você pode ver meus outros projetos acessando o meu portfolio pelo link:
 
-    https://midoritoyota.netlify.app/
+    https://bigdatatoyota.netlify.app/
 
     Estou aberta a novas oportunidades. Se deseja me conhecer, me adicione no linkedin e vamos bater um papo!
 
-    https://www.linkedin.com/in/midoritoyota/
+    https://www.linkedin.com/in/bigdatatoyota/
     '''
 
 
@@ -144,6 +144,25 @@ def info_page():
     Confira tudo o que é possível fazer com o My Twitter Data:
     '''
     st.video('https://youtu.be/1HhTusjL42k')
+
+    # Não tenho dados
+    st.header('**Não tenho dados pessoais do Twitter para usar**')
+    '''
+    Se você não usa o twitter ou não tem muitos dados para analisar, não tem problema! Você pode usar nossos dataset de exemplo clicando em Download:
+    '''
+
+    if st.button('Download'):
+        webbrowser.open('https://drive.google.com/file/d/18LsOGWCJiJUVOevZdqWHJFm6GUrKL84d/view?usp=sharing', new=2)
+
+    '''
+    **Observação!**
+
+    Os dados de exemplo foram coletados do Twitter de forma aleatória. Basicamente, utilizei a API do Twitter para 
+    pegar os tweets de diversos usuários diferentes que haviam postado algo relacionado à "Ciência de Dados" no dia 23/06/2020. Como havia
+    muito conteúdo desnecessário, fiz a substituição das palavras para que no final fosse gerada uma Word Cloud agradável. 
+    Por esse motivo, o conteúdo dos tweets não fará sentido algum e tão pouco reflete à minha opinião sobre os assuntos 
+    abordados no momento da coleta aleatória.
+    '''
 
 
 
