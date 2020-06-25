@@ -56,7 +56,7 @@ def about():
     Confira nosso vídeo demonstrativo:
     '''
 
-    st.image('foto_do_video.jpg', width = 680)
+    st.video('https://youtu.be/Cvcr_I27w8Q')
 
     '''Para uma explicação mais detalhada, clique em  `passo a passo` no **Menu Inicial** à esquerda.'''
 
