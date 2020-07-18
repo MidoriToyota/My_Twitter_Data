@@ -18,8 +18,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import numpy as np
 from unicodedata import normalize
-
-
+import chart_studio.plotly as py
+import plotly.graph_objs as go
 
 ## Menu Inicial ## --------------------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ def about():
     O `My Twitter Data` é um aplicativo criado para que qualquer pessoa com uma conta no twitter
     consiga analisar seus próprios dados sem a necessidade de baixar e instalar programas em seu computador.
     É tudo online e para começar basta completar alguns passos.
-  
+
     Confira nosso vídeo demonstrativo:
     '''
 
@@ -65,12 +65,12 @@ def about():
 
     '''
     O `My Twitter Data` surgiu como um exercício para aplicar a linguagem python em análise de dados
-    e utilizar o pacote streamlit para criar um aplicativo de análise online e iterativo. 
+    e utilizar o pacote streamlit para criar um aplicativo de análise online e iterativo.
 
-    A iniciativa surgiu após conhecer as funcionalidades do pacote streamlit no curso 
+    A iniciativa surgiu após conhecer as funcionalidades do pacote streamlit no curso
 
-    Se deseja contribuir com o projeto, acesse o código fonte que se encontra no meu portfólio e faça um commit! 
-    O `My Twitter Data` está aberto para sugestões de melhoria e críticas construtivas. 
+    Se deseja contribuir com o projeto, acesse o código fonte que se encontra no meu portfólio e faça um commit!
+    O `My Twitter Data` está aberto para sugestões de melhoria e críticas construtivas.
     Segue o link do meu portifólio que contém o código fonte do projeto:
 
     https://midoritoyota.netlify.app/
@@ -82,9 +82,9 @@ def about():
     st.title('Sobre a autora')
 
     '''
-    Me chamo `Midori`, sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios). 
+    Me chamo `Midori`, sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios).
     Atualmente, estou em processo de transição de carreira para Ciência de Dados e realizo diversos projetos
-    para botar em prática o que aprendo nos cursos que venho concluindo. Desenvolvi o `My Twitter Data` em python mas 
+    para botar em prática o que aprendo nos cursos que venho concluindo. Desenvolvi o `My Twitter Data` em python mas
     minha linguagem principal é o R. Se quiser, você pode ver meus outros projetos acessando o meu portfolio pelo link:
 
     https://midoritoyota.netlify.app/
@@ -116,8 +116,8 @@ def info_page():
     # Converter dados json para csv
     st.header('**2. Converta os dados json para csv**')
     '''
-    O arquivo fornecido pelo Twitter é em formato json e não conseguimos realizar análises com ele. 
-    Para a nossa felicidade o site http://tweetjstocsv.glitch.me/ faz todo o trabalho pesado de converter o arquivo json para csv. 
+    O arquivo fornecido pelo Twitter é em formato json e não conseguimos realizar análises com ele.
+    Para a nossa felicidade o site http://tweetjstocsv.glitch.me/ faz todo o trabalho pesado de converter o arquivo json para csv.
     Para fazer a conversão do arquivo, basta seguir os seguintes passos:
     - Faça o download dos dados enviados por e-mail pelo Twitter.
     - Descompacte o arquivo.
@@ -136,17 +136,17 @@ def info_page():
     st.header('**3. Não tenho dados pessoais do Twitter para usar**')
     '''
     Se você não usa o twitter ou não tem muitos dados para analisar, não tem problema! Você pode usar nossos dataset de exemplo clicando em Download:
-    
+
     [Baixar arquivo](https://drive.google.com/file/d/18LsOGWCJiJUVOevZdqWHJFm6GUrKL84d/view?usp=sharing)
     '''
 
     '''
     **Observação!**
 
-    Os dados de exemplo foram coletados do Twitter de forma aleatória. Basicamente, utilizei a API do Twitter para 
+    Os dados de exemplo foram coletados do Twitter de forma aleatória. Basicamente, utilizei a API do Twitter para
     pegar os tweets de diversos usuários diferentes que haviam postado algo relacionado à "Ciência de Dados" no dia 23/06/2020. Como havia
-    muito conteúdo desnecessário, fiz a substituição das palavras para que no final fosse gerada uma Word Cloud agradável. 
-    Por esse motivo, o conteúdo dos tweets não fará sentido algum e tão pouco reflete à minha opinião sobre os assuntos 
+    muito conteúdo desnecessário, fiz a substituição das palavras para que no final fosse gerada uma Word Cloud agradável.
+    Por esse motivo, o conteúdo dos tweets não fará sentido algum e tão pouco reflete à minha opinião sobre os assuntos
     abordados no momento da coleta aleatória.
 
     As outras informações de datas, horários, ids, quantidades de retweets, etc. são fictícios e gerados para que
@@ -158,8 +158,8 @@ def info_page():
     '''
     Se você já está com seu arquivo csv em mãos, chegou a hora de se divertir!
 
-    No **Menu Inicial** à esquerda clique em `Iniciar análise` e faça o upload do seu arquivo csv. 
-    Depois basta escolher o tipo de análise que deseja realizar e modificar os parâmetros de visualização 
+    No **Menu Inicial** à esquerda clique em `Iniciar análise` e faça o upload do seu arquivo csv.
+    Depois basta escolher o tipo de análise que deseja realizar e modificar os parâmetros de visualização
     acordo com a sua necessidade.
     '''
 
@@ -234,13 +234,17 @@ def analysis_2(df):
     st.header('**Tweets enviados no período**')
     graph_period(df)
 
-    # Gráfico de tweets por mês
-    st.header('**Total de tweets por mês**')
-    graph_month(df)
-
     # Gráfico de tweets por dia da semana
     st.header('**Total de tweets por dia da semana**')
     graph_weekday(df)
+
+    # Gráfico de tweets por hora do dia
+    st.header('**Total de tweets por hora do dia**')
+    graph_hour(df)
+
+    # Gráfico de tweets por dia da semana e por hora
+    st.header('**Total de tweets por dia da semana e por hora**')
+    graph_heatmap(df)
 
     # Gráfico de tweets por ano
     st.header('**Total de tweets por ano**')
@@ -258,7 +262,7 @@ def analysis_3(df):
 
     # Word Cloud
     st.header('**Nuvem de palavras**')
-    try: 
+    try:
         graph_wordcloud(words)
     except:
         st.info('Não foi possível carregar a Word Cloud')
@@ -292,6 +296,12 @@ def preprocess(df):
     df['favorite'] = df.favorite_count.apply(get_favorite)
     df['retweet'] = df.retweet_count.apply(get_retweet)
 
+    # Criar coluna com periodo (mês + ano)
+    month_list = list(df.month)
+    year_list = [str(year) for year in list(df.year)]
+    period = [month[0:3] + '-' + year for month, year in zip(month_list, year_list)]
+    df = df.assign(period=period)
+
     return df
 
 ## Função da Análise Temporal ## --------------------------------------------------------------------------------------
@@ -307,7 +317,7 @@ def slider_period(df):
     # Criar período caso não ocorra erro
     try:
         df_subset = df[(df['date']>= range_date[0]) & (df['date']<= range_date[1])]
-        
+
         if st.button('Resetar período'):
             return df
         else:
@@ -320,82 +330,111 @@ def slider_period(df):
 # Gráfico tweets no período
 def graph_period(df):
 
-    # Preparação do período
-    df_range = pd.DataFrame({'date': []})
-    df_range["date"] = df["date"].astype("datetime64")
-    df_range = df_range.groupby([df_range["date"].dt.year, df_range["date"].dt.month]).count()
+    # Contagem dos dias da semana com Counter
+    df_period = Counter(df.period)
 
-    # Tweets por período
-    n_range = range(len(df_range))
-    plt.figure(figsize = (10,5))
-    ax = plt.subplot()
-    ax.set_xticks(n_range)
-    ax.set_xticklabels(df_range.index, rotation = 35)
-    plt.plot(n_range, df_range['date'].values)
-    plt.xlabel('Mês e ano')
-    plt.ylabel('Quantidade de tweets')
-    st.pyplot()
+    # Período completo ordenado
+    ordered_year = [str(year) for year in sorted(df.year.unique())]
+    ordered_month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    ordered_period = []
+
+    for year in ordered_year:
+        for month in ordered_month:
+            ordered_period.append(month + '-' + year)
+
+    # Corrigir ordem dos períodos
+    df_period = {k: df_period[k] for k in ordered_period if df_period[k] > 0}
+
+    # Plot
+    data = [go.Bar(x=list(df_period.keys()), y=list(df_period.values()))]
+    layout = go.Layout(xaxis={'title':'Mês-Ano'}, yaxis={'title':'Quantidade de tweets'})
+    fig = go.Figure(data=data, layout=layout)
+    st.plotly_chart(fig)
 
 
-# Gráfico tweets no mês
-def graph_month(df):
+# Gráfico tweets por hora do dia
+def graph_hour(df):
 
-    # Agrupamento dos dados
-    df_month = Counter(df.month)
-    print(df_month)
-    desired_order_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    df_month = {k: df_month[k] for k in desired_order_list}
+    # Contagem dos dias do mês com Counter
+    df_hour = Counter(df.hour)
 
-    # Plot do gráfico
-    n_month = range(len(df_month))
-    plt.figure(figsize = (10,5))
-    ax = plt.subplot()
-    ax.set_xticks(n_month)
-    ax.set_xticklabels(df_month.keys(), rotation = 40)
-    plt.bar(n_month, df_month.values())
-    plt.xlabel('Mês')
-    plt.ylabel('Quantidade de tweets')
-    st.pyplot()
+    # Corrigir ordem dos dias da semana
+    desired_order_list = list(range(0,24))
+    df_hour = {k: df_hour[k] for k in desired_order_list}
 
+    # Plot
+    data = [go.Bar(x=list(df_hour.keys()), y=list(df_hour.values()), marker={'color':'#FFD700'})]
+    layout = go.Layout(xaxis={'title':'Horário'}, yaxis={'title':'Quantidade de tweets'})
+    fig = go.Figure(data=data, layout=layout)
+    st.plotly_chart(fig)
 
 # Gráfico Tweets por dia da semana
 def graph_weekday(df):
 
-    # Agrupamento dos dados
+    # Contagem dos dias da semana com Counter
     df_weekday = Counter(df.weekday)
-    desired_order_list = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    df_weekday = {k: df_weekday[k] for k in desired_order_list}
-    n_weekday = range(len(df_weekday))
 
-    # Plot do gráfico
-    plt.figure(figsize=(10, 5))
-    ax = plt.subplot()
-    ax.set_xticks(n_weekday)
-    ax.set_xticklabels(df_weekday.keys(), rotation=30)
-    plt.bar(n_weekday, df_weekday.values())
-    plt.xlabel('Dia da semana')
-    plt.ylabel('Quantidade de tweets')
-    st.pyplot()
+    # Corrigir ordem dos dias da semana
+    ordered_weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    df_weekday = {k: df_weekday[k] for k in ordered_weekday}
+
+    # Plot
+    data = [go.Bar(x=list(df_weekday.keys()), y=list(df_weekday.values()), marker={'color':'#E41A1C'})]
+    layout = go.Layout(xaxis={'title':'Dia da semana'}, yaxis={'title':'Quantidade de tweets'})
+    fig = go.Figure(data=data, layout=layout)
+    st.plotly_chart(fig)
+
+
+
+
+# Gráfico Heatmap
+def graph_heatmap(df):
+
+    # Agrupamento dos dados
+    df_heatmap = df.groupby(['weekday', 'hour']).id.count()
+
+    # Ordem dos dados
+    ordered_weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    ordered_heatmap = []
+    for a in ordered_weekday:
+        for b in list(range(0,24)):
+            ordered_heatmap.append((a,b))
+
+    # Valores ordenados
+    x_values = [x[0] for x in ordered_heatmap]
+    y_values = [x[1] for x in ordered_heatmap]
+    z_values = []
+    for a in ordered_heatmap:
+        if a in df_heatmap:
+            z_values.append(df_heatmap[a])
+        else:
+            z_values.append(0)
+
+    # Plot
+    data = go.Heatmap(x=x_values, y=y_values, z=z_values, colorscale='Jet',
+                     colorbar = {'title': 'Nº de tweets <br>enviados'})
+    layout = go.Layout(xaxis = dict(title='Dia da semana'),
+                      yaxis = dict(title='Hora do dia'))
+    fig = go.Figure(data=data, layout=layout)
+    st.plotly_chart(fig)
 
 
 # Gráfico tweets por ano
 def graph_year(df):
 
-    # Agrupamento dos dados
+    # Contagem dos dias do ano com Counter
     df_year = Counter(df.year)
+
+    # Corrigir ordem dos dias da semana
     desired_order_list = sorted(df_year)
     df_year = {k: df_year[k] for k in desired_order_list}
 
-    # Plot do gráfico
-    n_year = range(len(df_year))
-    plt.figure(figsize = (10,5))
-    ax = plt.subplot()
-    ax.set_xticks(n_year)
-    ax.set_xticklabels(df_year.keys())
-    plt.bar(n_year, df_year.values())
-    plt.xlabel('Ano')
-    plt.ylabel('Quantidade de tweets')
-    st.pyplot()
+    # Plot
+    data = [go.Bar(x=list(df_year.keys()), y=list(df_year.values()), marker={'color':'#4DAF4A'})]
+    layout = go.Layout(xaxis={'title':'Ano', 'dtick': 1}, yaxis={'title':'Quantidade de tweets'})
+    fig = go.Figure(data=data, layout=layout)
+    st.plotly_chart(fig)
+
 
 ## Funções da Análise Word Cloud ## --------------------------------------------------------------------------------------
 
@@ -416,7 +455,7 @@ def stopwords_general(df):
     raw_string = ''.join(raw_tweets)
     no_links = re.sub(r'http\S+', '', raw_string)
     no_acentos = str(substituir_acentos(no_links))[2:-1]
-    no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_acentos) 
+    no_unicode = re.sub(r"\\[a-z][a-z]?[0-9]+", '', no_acentos)
     no_mark= re.sub(r'(\s)@\w+', r'\1', no_unicode)
     no_special_characters = re.sub('[^A-Za-z ]+', '', no_mark)
 
@@ -470,39 +509,27 @@ def graph_wordcloud(words):
 
 # Gráfico com a frequência das palavras
 def graph_freq(words):
-    df_palavras = FreqDist(words)
-    fig = plt.figure(figsize=(10,5))
-    df_palavras.plot(20, cumulative=False)
-    st.pyplot()
+    # Plot
+    df_palavras = Counter(words)
+    df_palavras = df_palavras.most_common()
+    data = [go.Bar(x=list(dict(df_palavras).keys())[:20], y=list(dict(df_palavras).values())[:20], marker={'color':'#984EA3'})]
+    layout = go.Layout(xaxis={'title':'Palavras'}, yaxis={'title':'Frequência'})
+    fig = go.Figure(data=data, layout=layout)
+    st.plotly_chart(fig)
 
 ## Funções da Análise Visão Geral ## --------------------------------------------------------------------------------------
 
 # Gráfico donnuts de favoritos
 def graph_favorite(df):
-    
+
     # Agrupamento dos dados
     df_favorite = Counter(df.favorite)
-    labels = list(df_favorite.keys()) 
+    labels = list(df_favorite.keys())
     values = list(df_favorite.values())
 
-    # Plot do gráfico
-    fig, ax = plt.subplots(figsize=(10, 5), subplot_kw=dict(aspect="equal"))
-    wedges, texts = ax.pie(values, wedgeprops=dict(width=0.5), startangle=-40)
-    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
-    kw = dict(arrowprops=dict(arrowstyle="-"),
-            bbox=bbox_props, zorder=0, va="center")
-
-    for i, p in enumerate(wedges):
-        ang = (p.theta2 - p.theta1)/2. + p.theta1
-        y = np.sin(np.deg2rad(ang))
-        x = np.cos(np.deg2rad(ang))
-        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
-        kw["arrowprops"].update({"connectionstyle": connectionstyle})
-        ax.annotate("{} ({})".format(labels[i], values[i]), xy=(x, y), xytext=(0.9*np.sign(x), 0.9*y),
-                    horizontalalignment=horizontalalignment, **kw)
-
-    st.pyplot()
+    # Plot
+    data=[go.Pie(labels=labels, values=values, hole=.5, marker = {'colors': ['#B5ACA7', '#D40000']})]
+    st.plotly_chart(data)
 
 
 # Gráfico donnuts de retweets
@@ -510,29 +537,14 @@ def graph_retweet(df):
 
     # Agrupamento dos dados
     df_retweet = Counter(df.retweet)
-    labels = list(df_retweet.keys()) 
+    labels = list(df_retweet.keys())
     values = list(df_retweet.values())
 
-    # Plot do gráfico
-    fig, ax = plt.subplots(figsize=(10, 5), subplot_kw=dict(aspect="equal"))
-    wedges, texts = ax.pie(values, wedgeprops=dict(width=0.5), startangle=-40)
-    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
-    kw = dict(arrowprops=dict(arrowstyle="-"),
-            bbox=bbox_props, zorder=0, va="center")
-
-    for i, p in enumerate(wedges):
-        ang = (p.theta2 - p.theta1)/2. + p.theta1
-        y = np.sin(np.deg2rad(ang))
-        x = np.cos(np.deg2rad(ang))
-        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
-        kw["arrowprops"].update({"connectionstyle": connectionstyle})
-        ax.annotate("{} ({})".format(labels[i], values[i]), xy=(x, y), xytext=(0.9*np.sign(x), 0.9*y),
-                    horizontalalignment=horizontalalignment, **kw)
-
-    st.pyplot()
+    # Plot
+    data=[go.Pie(labels=labels, values=values, hole=.5, marker = {'colors': ['#B5ACA7', '#0000B3']})]
+    st.plotly_chart(data)
 
 
 ## Execução ## --------------------------------------------------------------------------------------
- 
+
 menu()
