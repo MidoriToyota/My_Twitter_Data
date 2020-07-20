@@ -485,13 +485,14 @@ def stopwords_user(words):
     # Solicitar palavras
     words_list_user = st.text_input('Insira todas as palavras que deseja remover da Word Cloud (separar as palavras com barras "/")', 'ate/sao/tao')
     STOPWORDS_user = words_list_user.split("/")
-    words_new = [w for w in words if w not in STOPWORDS_user]
 
     # Display bonito das palavras
     options = st.multiselect(
         'Palavras removidas',
         STOPWORDS_user,
         STOPWORDS_user)
+
+    words_new = [w for w in words if w not in options]
 
     return words_new
 
