@@ -528,7 +528,7 @@ def graph_favorite(df):
     values = list(df_favorite.values())
 
     # Plot
-    data=[go.Pie(labels=labels, values=values, hole=.5, marker = {'colors': ['#B5ACA7', '#D40000']})]
+    data=[go.Pie(labels=labels, values=values, hole=.5, marker = {'colors': ['#B5ACA7', '#0000B3']})]
     st.plotly_chart(data)
 
 
