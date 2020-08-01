@@ -58,6 +58,12 @@ def about():
 
     st.video('https://youtu.be/Cvcr_I27w8Q')
 
+    '''
+    Confira as atualizações mais recentes do aplicativo!
+    '''
+
+    st.video('https://youtu.be/RNH6qszJD4Q')
+
     '''Para uma explicação mais detalhada, clique em  `passo a passo` no **Menu Inicial** à esquerda.'''
 
     # Sobre o projeto
@@ -65,9 +71,9 @@ def about():
 
     '''
     O `My Twitter Data` surgiu como um exercício para aplicar a linguagem python em análise de dados
-    e utilizar o pacote streamlit para criar um aplicativo de análise online e iterativo.
+    e utilizar o pacote streamlit para criar um app de análise online e iterativo.
 
-    A iniciativa surgiu após conhecer as funcionalidades do pacote streamlit no curso
+    O app foi feito com o pacote Streamlit junto com o poderoso pacote Plolty, para gráficos iterativos.
 
     Se deseja contribuir com o projeto, acesse o código fonte que se encontra no meu portfólio e faça um commit!
     O `My Twitter Data` está aberto para sugestões de melhoria e críticas construtivas.
@@ -82,14 +88,14 @@ def about():
     st.title('Sobre a autora')
 
     '''
-    Me chamo `Midori`, sou formada em Engenharia Civil e tenho 2 anos de experiência em obras (construção de edifícios).
+    Oi! Eu sou a `Midori`! Formada em Engenharia Civil, tenho 2 anos de experiência em obras (construção de edifícios).
     Atualmente, estou em processo de transição de carreira para Ciência de Dados e realizo diversos projetos
     para botar em prática o que aprendo nos cursos que venho concluindo. Desenvolvi o `My Twitter Data` em python mas
     minha linguagem principal é o R. Se quiser, você pode ver meus outros projetos acessando o meu portfolio pelo link:
 
     https://midoritoyota.netlify.app/
 
-    Estou aberta a novas oportunidades. Se deseja me conhecer, me adicione no linkedin e vamos bater um papo!
+    Estou aberta a novas oportunidades, então, se deseja me conhecer melhor me adicione no linkedin e vamos bater um papo!
 
     https://www.linkedin.com/in/midoritoyota/
     '''
