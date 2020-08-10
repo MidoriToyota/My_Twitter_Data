@@ -9,8 +9,13 @@ https://mytwitterdata.herokuapp.com/
 Confira o vídeo demonstrativo:
 
 <h2 align="center">
-  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/video.jpg" alt="Video demonstrativo" width="600px" />
-  <br>
+  <a href=""><img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/video.jpg" alt="Video demonstrativo" width="600px" />
+  <br></a>
 </h2>
+
+<h2 align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Cvcr_I27w8Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</h2>
+
 
 Confira as atualizações mais recentes do aplicativo!
