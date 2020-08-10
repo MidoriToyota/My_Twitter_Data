@@ -14,7 +14,7 @@ Confira o vídeo demonstrativo:
 </h2>
 
 <h2 align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Cvcr_I27w8Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/Cvcr_I27w8Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </h2>
 
 
