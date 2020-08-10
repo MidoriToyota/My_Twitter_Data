@@ -9,7 +9,7 @@ https://mytwitterdata.herokuapp.com/
 Confira o vídeo demonstrativo:
 
 <h2 align="center">
-  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/example/video" alt="Video demonstrativo" width="600px" />
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/example/video.png" alt="Video demonstrativo" width="600px" />
   <br>
 </h2>
 
