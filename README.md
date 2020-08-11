@@ -28,7 +28,9 @@ streamlit run my_twitter_data.py
 
 ## Funcionalidades
 
-#### Principais Estatísticas
+**_Principais Estatísticas_**
+
+No app você pode ver as suas principais estatísticas como: nº total de tweets, curtidas, retweets, qual foi o tweet mais curtido ou o mais retweetado.
 
 <h3 align="center">
   <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/estatisticas.jpg" alt="Principais estatísticas" width="600px" />
