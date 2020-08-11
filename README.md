@@ -14,9 +14,9 @@ O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta
 </h3>
 
 
-## Principais Funcionalidades
+## Funcionalidades
 
-#### Estatísticas
+#### Principais Estatísticas
 
 <h3 align="center">
   <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/estatisticas.jpg" alt="Principais estatísticas" width="600px" />
