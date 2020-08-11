@@ -1,8 +1,6 @@
 # My Twitter Data
 
-**_Web App com Streamlit e Plotly_**
-
-https://mytwitterdata.herokuapp.com/
+**_Web App com Streamlit e Plotly :_** https://mytwitterdata.herokuapp.com/
 
 Faça a análise dos dados do seu Twitter de um jeito fácil e sem precisar instalar nada!
 
