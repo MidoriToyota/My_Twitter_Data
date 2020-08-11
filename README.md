@@ -1,18 +1,35 @@
-# My Twitter Data - Web App com Streamlit e Plotly
+# My Twitter Data
+
+#### Web App com Streamlit e Plotly
 
 https://mytwitterdata.herokuapp.com/
 
 Faça a análise dos dados do seu Twitter de um jeito fácil e sem precisar instalar nada!
 
-O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta no twitter consiga analisar seus próprios dados sem a necessidade de baixar e instalar programas em seu computador. É tudo online e para começar basta completar alguns passos.
+O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta no twitter consiga analisar seus próprios dados sem a necessidade de baixar e instalar programas em seu computador. O app foi desenvolvido em python utilizando o pacote Streamlit para gerar o layout e Plotly para cria os gráficos iterativos.
 
-#### Vídeo demonstrativo:
+
+## Vídeo demonstrativo:
 
 <h3 align="center">
   <a href="https://youtu.be/Cvcr_I27w8Q"><img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/video.jpg" alt="Video demonstrativo" width="600px" />
   </a><br><br><br>
 </h3>
 
+## Como rodar o app localmente
+
+Para instalar o My Twitter Data e rodar localmente na sua máquina, siga o passo à passo abaixo:
+
+```
+# Download do repositório
+git clone https://github.com/MidoriToyota/My_Twitter_Data.git
+
+# Instalar os pacotes do requirements.txt (o terminal deve estar dentro da pasta do repositório clonado)
+pip install -r requirements.txt
+
+# Rodar o app
+streamlit run my_twitter_data.py
+```
 
 ## Funcionalidades
 
