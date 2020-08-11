@@ -9,9 +9,9 @@ O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta
 
 ## Vídeo demonstrativo:
 
-<h3 align="center">
+<h3 align="center"><br>
   <a href="https://youtu.be/Cvcr_I27w8Q"><img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/video.jpg" alt="Video demonstrativo" width="600px" />
-  </a><br><br><br>
+  </a><br><br>
 </h3>
 
 ## Como rodar o app localmente
