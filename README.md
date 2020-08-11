@@ -24,7 +24,7 @@ Para instalar o My Twitter Data e rodar localmente na sua máquina, siga o passo
 # Download do repositório
 git clone https://github.com/MidoriToyota/My_Twitter_Data.git
 
-# Instalar os pacotes do requirements.txt (o terminal deve estar dentro da pasta do repositório clonado)
+# Instalar os pacotes do requirements.txt
 pip install -r requirements.txt
 
 # Rodar o app
