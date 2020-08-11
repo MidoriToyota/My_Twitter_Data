@@ -1,4 +1,4 @@
-# My Twitter Data
+# My Twitter Data - Web App com Streamlit e Plotly
 
 https://mytwitterdata.herokuapp.com/
 
@@ -15,3 +15,10 @@ Confira o vídeo demonstrativo:
 
 
 ## Funcionalidades
+
+#### Principais estatísticas
+
+<h3 align="center">
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/estatisticas.jpg" alt="Principais estatísticas" width="600px" />
+  <br>
+</h3>
