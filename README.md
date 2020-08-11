@@ -10,7 +10,7 @@ Confira o vídeo demonstrativo:
 
 <h3 align="center">
   <a href="https://youtu.be/Cvcr_I27w8Q"><img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/video.jpg" alt="Video demonstrativo" width="600px" />
-  <br></a>
+  </a><br><br><br>
 </h3>
 
 
@@ -20,5 +20,5 @@ Confira o vídeo demonstrativo:
 
 <h3 align="center">
   <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/estatisticas.jpg" alt="Principais estatísticas" width="600px" />
-  <br>
+  <br><br><br>
 </h3>
