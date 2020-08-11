@@ -6,15 +6,12 @@ Faça a análise dos dados do seu Twitter de um jeito fácil e sem precisar inst
 
 O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta no twitter consiga analisar seus próprios dados sem a necessidade de baixar e instalar programas em seu computador. O app foi desenvolvido em python utilizando o pacote Streamlit para gerar o layout e Plotly para cria os gráficos iterativos.
 
-
-## Vídeo demonstrativo:
-
 <h3 align="center"><br>
   <a href="https://youtu.be/Cvcr_I27w8Q"><img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/video.jpg" alt="Video demonstrativo" width="600px" />
   </a><br><br>
 </h3>
 
-## Como rodar o app localmente
+## Rodando o app localmente
 
 Para instalar o My Twitter Data e rodar localmente na sua máquina, siga o passo à passo abaixo:
 
