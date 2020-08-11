@@ -32,13 +32,34 @@ O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta
 #### Análise temporal
 
 <h3 align="center">
-  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/periodo.jpg" alt="Período de análise" width="600px" />
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/periodo1.jpg" alt="Período de análise" width="600px" />
   <br><br>
 </h3>
+
+<h3 align="center">
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/periodo2.jpg" alt="Período de análise" width="600px" />
+  <br><br>
+</h3>
+
+<h3 align="center">
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/periodo3.jpg" alt="Período de análise" width="600px" />
+  <br><br>
+</h3>
+
+<h3 align="center">
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/periodo4.jpg" alt="Período de análise" width="600px" />
+  <br><br>
+</h3>
+
 
 #### Nuvem de palavras
 
 <h3 align="center">
-  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/wordcloud.jpg" alt="Nuvem de palavras" width="600px" />
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/wordcloud1.jpg" alt="Nuvem de palavras" width="600px" />
+  <br><br>
+</h3>
+
+<h3 align="center">
+  <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/wordcloud2.jpg" alt="Nuvem de palavras" width="600px" />
   <br><br>
 </h3>
