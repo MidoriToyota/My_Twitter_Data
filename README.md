@@ -20,7 +20,7 @@ O My Twitter Data é um aplicativo criado para que qualquer pessoa com uma conta
 
 Para instalar o My Twitter Data e rodar localmente na sua máquina, siga o passo à passo abaixo:
 
-```
+```bash
 # Download do repositório
 git clone https://github.com/MidoriToyota/My_Twitter_Data.git
 
