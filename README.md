@@ -1,6 +1,6 @@
 # My Twitter Data
 
-#### Web App com Streamlit e Plotly
+**_Web App com Streamlit e Plotly_**
 
 https://mytwitterdata.herokuapp.com/
 
