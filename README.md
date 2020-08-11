@@ -42,8 +42,10 @@ No app você pode ver as suas principais estatísticas como: nº total de tweets
   <br><br>
 </h3>
 
+**_Análise temporal_**
 
-#### Análise temporal
+Você também pode fazer uma análise temporal para entender, por exemplo, quais os meses, dias da semana ou horários que você mais posta tweets.
+Isso tudo de acordo com o período de análise que você delimitar.
 
 <h3 align="center">
   <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/periodo1.jpg" alt="Período de análise" width="600px" />
@@ -66,7 +68,10 @@ No app você pode ver as suas principais estatísticas como: nº total de tweets
 </h3>
 
 
-#### Nuvem de palavras
+**_Word Cloud_**
+
+Com a Word Cloud você consegue visualizar quais suas palavras mais frequêntes. Se houver alguma palavra que não faz sentido
+na sua núvem, basta removê-la digitando-a na caixa de remoção.
 
 <h3 align="center">
   <img src="https://github.com/MidoriToyota/My_Twitter_Data/blob/master/img/wordcloud1.jpg" alt="Nuvem de palavras" width="600px" />
