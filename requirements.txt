@@ -78,7 +78,7 @@ pycodestyle==2.6.0
 pydataset==0.2.0
 pydeck==0.4.0b2
 pyflakes==2.2.0
-Pygments==2.4.2
+Pygments==2.7.4
 pylint==2.5.3
 PyMeta3==0.5.1
 pyparsing==2.4.7
